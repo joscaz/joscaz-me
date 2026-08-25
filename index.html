@@ -5,9 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Jose Carlos Zertuche — Software Engineer">
   <title>Jose Carlos Zertuche</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch {
+      // localStorage may be unavailable in privacy-restricted contexts.
+    }
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <button class="theme-toggle" type="button" aria-pressed="false">
+    <span class="theme-toggle-label">Dark mode</span>
+  </button>
+
   <main>
     <header>
       <h1>Jose Zertuche</h1>
@@ -170,5 +184,32 @@
       </div>
     </section> -->
   </main>
+
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleLabel = themeToggle.querySelector('.theme-toggle-label');
+
+    function updateThemeToggle() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggleLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = nextTheme;
+
+      try {
+        localStorage.setItem('theme', nextTheme);
+      } catch {
+        // Keep the toggle functional when localStorage is unavailable.
+      }
+
+      updateThemeToggle();
+    });
+
+    updateThemeToggle();
+  </script>
 </body>
 </html>

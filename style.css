@@ -6,24 +6,64 @@
 
 :root {
   --accent: #c0392b;
+  --background: #ffffff;
   --text: #1a1a1a;
   --muted: #777777;
   --border: #e8e8e8;
+  --secondary-text: #3a3a3a;
+  --description: #555555;
+}
+
+:root[data-theme="dark"] {
+  --accent: #f27669;
+  --background: #171717;
+  --text: #f2f2f2;
+  --muted: #aaaaaa;
+  --border: #333333;
+  --secondary-text: #d1d1d1;
+  --description: #bdbdbd;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #ffffff;
+  background: var(--background);
   color: var(--text);
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 main {
   max-width: 680px;
   margin: 0 auto;
   padding: 72px 24px 96px;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  padding: 7px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* ── Header ── */
@@ -140,7 +180,7 @@ a:hover {
 .job li {
   margin-bottom: 5px;
   font-size: 0.9rem;
-  color: #3a3a3a;
+  color: var(--secondary-text);
 }
 
 .job li:last-child {
@@ -164,7 +204,7 @@ a:hover {
 
 .project-desc {
   font-size: 0.875rem;
-  color: #555;
+  color: var(--description);
   margin-top: 2px;
 }
 
