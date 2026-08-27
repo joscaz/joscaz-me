@@ -236,6 +236,26 @@ a:hover {
   color: var(--muted);
 }
 
+/* ── More about me ── */
+
+.resource-list {
+  padding-left: 18px;
+}
+
+.resource-list li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+.resource-list li:last-child {
+  margin-bottom: 0;
+}
+
+.resource-list li.resource-note {
+  color: var(--muted);
+}
+
 /* ── Lectures ── */
 
 .lecture {
